@@ -59,17 +59,10 @@ export function WhatWeDoSection() {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
           {/* Left Column: Practice area accordion (7 cols) */}
           <div className="lg:col-span-7 flex flex-col gap-6">
-            {/* Eyebrow badge */}
+            {/* Section Tag */}
             <div>
-              <span className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-sans font-semibold tracking-wider uppercase text-[var(--burgundy)] bg-[var(--burgundy-faint)] border border-[rgba(110,31,31,0.15)]">
-                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
-                  <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
-                  <polyline points="14 2 14 8 20 8" />
-                  <line x1="16" y1="13" x2="8" y2="13" />
-                  <line x1="16" y1="17" x2="8" y2="17" />
-                  <polyline points="10 9 9 9 8 9" />
-                </svg>
-                What We Do
+              <span className="text-xs font-sans font-semibold tracking-[0.2em] uppercase text-[var(--burgundy)]">
+                02 / What We Do
               </span>
             </div>
 

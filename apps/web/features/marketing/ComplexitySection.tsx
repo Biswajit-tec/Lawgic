@@ -42,6 +42,7 @@ export function ComplexitySection() {
     <section
       ref={sectionRef}
       id="complexity"
+      data-header-theme="dark"
       aria-label="Legal Complexity and Clarity"
       className="relative py-28 md:py-36 overflow-hidden select-none"
       style={{
@@ -63,12 +64,9 @@ export function ComplexitySection() {
       />
 
       <div ref={contentRef} className="container-lawgic relative z-10 text-center">
-        {/* Eyebrow Badge */}
-        <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-xs font-sans font-medium tracking-wide text-[var(--brass-light)] bg-white/10 border border-white/15 backdrop-blur-xs mb-8">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-            <path d="M3 21h18M3 10h18M5 10v11M19 10v11M9 10v11M15 10v11M12 2 2 7h20L12 2z"/>
-          </svg>
-          <span>Complexity Brings Uncertainty. We Bring Clarity.</span>
+        {/* Editorial Eyebrow Tag */}
+        <div className="text-xs font-sans font-semibold uppercase tracking-[0.2em] text-[var(--brass-light)] mb-6">
+          Complexity Into Clarity
         </div>
 
         {/* Large Editorial Serif Headline */}

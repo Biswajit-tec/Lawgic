@@ -106,8 +106,10 @@ export function TrustSection() {
         >
           {/* Left: editorial headline */}
           <div>
-            <div className="trust-reveal" style={{ marginBottom: "1.5rem" }}>
-              <span className="section-badge">Trust &amp; Accuracy</span>
+            <div className="trust-reveal" style={{ marginBottom: "1.25rem" }}>
+              <span className="text-xs font-sans font-semibold tracking-[0.2em] uppercase text-[var(--burgundy)]">
+                06 / Trust &amp; Accuracy
+              </span>
             </div>
             <div className="trust-reveal" style={{ marginBottom: "1.5rem" }}>
               <h2

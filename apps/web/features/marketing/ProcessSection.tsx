@@ -60,9 +60,8 @@ export function ProcessSection() {
       <div className="container-lawgic relative z-10">
         {/* Section Header */}
         <div className="text-center max-w-2xl mx-auto mb-16">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-sans font-semibold tracking-wider uppercase text-[var(--burgundy)] bg-[var(--burgundy-faint)] border border-[rgba(110,31,31,0.15)] mb-6">
-            <span className="w-1.5 h-1.5 rounded-full bg-[var(--burgundy)]" />
-            Our Process
+          <div className="text-xs font-sans font-semibold tracking-[0.2em] uppercase text-[var(--burgundy)] mb-4">
+            03 / Our Process
           </div>
 
           <h2

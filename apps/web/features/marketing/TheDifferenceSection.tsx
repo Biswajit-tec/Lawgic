@@ -71,9 +71,8 @@ export function TheDifferenceSection() {
           {/* Left Column (5 cols) */}
           <div className="lg:col-span-5 flex flex-col gap-6">
             <div>
-              <span className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-sans font-semibold tracking-wider uppercase text-[var(--burgundy)] bg-[var(--burgundy-faint)] border border-[rgba(110,31,31,0.15)]">
-                <span className="w-1.5 h-1.5 rounded-full bg-[var(--burgundy)]" />
-                The Difference
+              <span className="text-xs font-sans font-semibold tracking-[0.2em] uppercase text-[var(--burgundy)]">
+                04 / The Difference
               </span>
             </div>
 
@@ -154,7 +153,6 @@ export function TheDifferenceSection() {
                     <span className="font-sans text-xs font-bold uppercase tracking-wider text-[var(--brass-light)]">
                       With Lawgic
                     </span>
-                    <span className="w-2 h-2 rounded-full bg-[var(--brass-light)] animate-pulse" />
                   </div>
 
                   <h3 className="font-serif text-xl font-semibold text-[var(--ivory)] mb-5">

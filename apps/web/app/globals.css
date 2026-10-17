@@ -97,8 +97,114 @@
   --ease-out-expo:     cubic-bezier(0.16, 1, 0.3, 1);
   --ease-smooth:       cubic-bezier(0.25, 0.46, 0.45, 0.94);
   --duration-fast:    150ms;
-  --duration-base:    300ms;
-  --duration-slow:    600ms;
+}
+
+/* ============================================================
+   PALETTE THEMES (Light, Minimal & Pleasant)
+   ============================================================ */
+
+[data-theme="sand-cyprus"] {
+  --ivory:         #F0EDE6;
+  --ivory-deep:    #E5E0D7;
+  --ivory-subtle:  #F7F5F0;
+  --cream:         #DCD5C9;
+
+  --burgundy:      #004741;
+  --burgundy-deep: #00332E;
+  --burgundy-mid:  #005C54;
+  --burgundy-soft: #147269;
+  --burgundy-faint:#E2EFEA;
+
+  --charcoal:      #10211E;
+  --charcoal-mid:  #253D38;
+  --stone:         #5E746F;
+  --stone-light:   #95A9A4;
+  --stone-faint:   #D4DEDC;
+
+  --brass:         #2A7B72;
+  --brass-light:   #4EA59B;
+  --brass-faint:   #E2F2EF;
+
+  --color-focus:   #004741;
+  --color-surface-dark: #00332E;
+}
+
+[data-theme="milk-matcha"] {
+  --ivory:         #F5EFCF;
+  --ivory-deep:    #EBE3BD;
+  --ivory-subtle:  #FAF6E4;
+  --cream:         #DFD6AB;
+
+  --burgundy:      #4B5A2F;
+  --burgundy-deep: #374322;
+  --burgundy-mid:  #5B6E39;
+  --burgundy-soft: #788F4D;
+  --burgundy-faint:#EFF3DE;
+
+  --charcoal:      #242A17;
+  --charcoal-mid:  #3D452B;
+  --stone:         #6D7558;
+  --stone-light:   #9FA887;
+  --stone-faint:   #D8DFC8;
+
+  --brass:         #9CA763;
+  --brass-light:   #B5BF82;
+  --brass-faint:   #EEF2D8;
+
+  --color-focus:   #4B5A2F;
+  --color-surface-dark: #374322;
+}
+
+[data-theme="petal-espresso"] {
+  --ivory:         #FAF0F4;
+  --ivory-deep:    #EEDEE5;
+  --ivory-subtle:  #FCF6F9;
+  --cream:         #E2CED6;
+
+  --burgundy:      #4F2B1F;
+  --burgundy-deep: #3B1E15;
+  --burgundy-mid:  #653828;
+  --burgundy-soft: #844C38;
+  --burgundy-faint:#F5E8E4;
+
+  --charcoal:      #241612;
+  --charcoal-mid:  #3E2A24;
+  --stone:         #7A625C;
+  --stone-light:   #AA948E;
+  --stone-faint:   #DCCEC9;
+
+  --brass:         #A05A44;
+  --brass-light:   #C07B65;
+  --brass-faint:   #F7E4DE;
+
+  --color-focus:   #4F2B1F;
+  --color-surface-dark: #3B1E15;
+}
+
+[data-theme="lime-canopy"] {
+  --ivory:         #F4FBE7;
+  --ivory-deep:    #E5F2D2;
+  --ivory-subtle:  #FAFEF3;
+  --cream:         #D7E9BE;
+
+  --burgundy:      #2D3E2C;
+  --burgundy-deep: #1E2B1D;
+  --burgundy-mid:  #3B5139;
+  --burgundy-soft: #4E6A4C;
+  --burgundy-faint:#E4EFE2;
+
+  --charcoal:      #182317;
+  --charcoal-mid:  #2C3A2B;
+  --stone:         #5E705D;
+  --stone-light:   #95A694;
+  --stone-faint:   #D3DFD2;
+
+  --brass:         #608A5E;
+  --brass-light:   #80AB7E;
+  --brass-faint:   #E5F0E4;
+
+  --color-focus:   #2D3E2C;
+  --color-surface-dark: #1E2B1D;
 }
 
 /* ============================================================
@@ -246,19 +352,18 @@ body {
   font-family: var(--font-sans);
   font-size: var(--text-caption);
   font-weight: 600;
-  letter-spacing: 0.1em;
+  letter-spacing: 0.2em;
   text-transform: uppercase;
   color: var(--burgundy);
-  background: var(--burgundy-faint);
-  border: 1px solid rgba(110,31,31,0.12);
-  border-radius: var(--radius-pill);
-  padding: 0.375rem 0.875rem;
+  background: transparent;
+  border: none;
+  padding: 0;
 }
 
 .section-badge-dark {
-  color: rgba(244,239,228,0.85);
-  background: rgba(255,255,255,0.08);
-  border-color: rgba(255,255,255,0.15);
+  color: var(--brass-light);
+  background: transparent;
+  border: none;
 }
 
 /* ============================================================

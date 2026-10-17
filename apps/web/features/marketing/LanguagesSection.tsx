@@ -137,6 +137,7 @@ export function LanguagesSection() {
     <section
       ref={sectionRef}
       id="languages"
+      data-header-theme="dark"
       aria-labelledby="languages-heading"
       className="relative py-28 md:py-36 overflow-hidden select-none"
       style={{
@@ -147,11 +148,10 @@ export function LanguagesSection() {
       <LedgerMarginRuler start={1380} end={1480} step={10} theme="dark" />
 
       <div className="container-lawgic relative z-10">
-        {/* Eyebrow badge */}
-        <div className="mb-6">
-          <span className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-sans font-medium tracking-wide text-[var(--brass-light)] bg-white/10 border border-white/15 backdrop-blur-xs">
-            <span className="w-1.5 h-1.5 rounded-full bg-[var(--brass-light)]" />
-            22 Scheduled Languages · Multilingual India
+        {/* Eyebrow tag */}
+        <div className="mb-4">
+          <span className="text-xs font-sans font-semibold tracking-[0.2em] uppercase text-[var(--brass-light)]">
+            05 / Pan-Indian Multilingual Reach
           </span>
         </div>
 
@@ -180,7 +180,7 @@ export function LanguagesSection() {
         <div className="mb-12 p-6 md:p-8 rounded-2xl bg-white/[0.06] border border-white/15 backdrop-blur-md">
           <div className="flex flex-wrap items-center justify-between gap-4 pb-4 mb-4 border-b border-white/10">
             <div className="flex items-center gap-3">
-              <span className="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-pulse" />
+              <span className="w-2 h-2 rounded-full bg-emerald-400" />
               <span className="font-sans text-xs uppercase tracking-wider text-[var(--brass-light)] font-bold">
                 Live Demonstration · {activeLang.name} ({activeLang.native})
               </span>

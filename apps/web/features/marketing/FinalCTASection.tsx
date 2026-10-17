@@ -61,9 +61,8 @@ export function FinalCTASection() {
             {/* Left Column (8 cols) */}
             <div className="lg:col-span-8 flex flex-col gap-6 max-w-2xl">
               <div>
-                <span className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-sans font-semibold tracking-wider uppercase text-[var(--brass-light)] bg-white/10 border border-white/15">
-                  <span className="w-1.5 h-1.5 rounded-full bg-[var(--brass-light)]" />
-                  Legal Understanding For Everyone
+                <span className="text-xs font-sans font-semibold tracking-[0.2em] uppercase text-[var(--brass-light)]">
+                  07 / Legal Understanding For Everyone
                 </span>
               </div>
 

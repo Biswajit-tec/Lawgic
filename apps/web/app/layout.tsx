@@ -65,6 +65,8 @@ export const viewport: Viewport = {
   initialScale: 1,
 };
 
+import { ThemeProvider } from "@/components/layout/ThemeContext";
+
 interface RootLayoutProps {
   children: React.ReactNode;
 }
@@ -75,7 +77,9 @@ export default function RootLayout({ children }: RootLayoutProps) {
       lang="en"
       className={`${cormorant.variable} ${plusJakarta.variable} h-full`}
     >
-      <body className="min-h-full flex flex-col antialiased">{children}</body>
+      <body className="min-h-full flex flex-col antialiased">
+        <ThemeProvider>{children}</ThemeProvider>
+      </body>
     </html>
   );
 }
