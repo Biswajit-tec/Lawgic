@@ -29,8 +29,8 @@ const nextConfig: NextConfig = {
     ];
   },
 
-  // Transpile monorepo packages
-  transpilePackages: ["@lawgic/types", "@lawgic/validation", "@lawgic/config"],
+  // Transpile GSAP and monorepo packages
+  transpilePackages: ["gsap", "@gsap/react", "@lawgic/types", "@lawgic/validation", "@lawgic/config"],
 
   // Image optimization
   images: {

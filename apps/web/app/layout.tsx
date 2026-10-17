@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import { Cormorant_Garamond, Plus_Jakarta_Sans } from "next/font/google";
+import { Cormorant_Garamond, Plus_Jakarta_Sans, Courier_Prime } from "next/font/google";
 import "./globals.css";
 
 const cormorant = Cormorant_Garamond({
@@ -15,6 +15,14 @@ const plusJakarta = Plus_Jakarta_Sans({
   variable: "--font-plus-jakarta",
   subsets: ["latin"],
   weight: ["300", "400", "500", "600", "700"],
+  display: "swap",
+  preload: true,
+});
+
+const courierPrime = Courier_Prime({
+  variable: "--font-typewriter",
+  weight: ["400", "700"],
+  subsets: ["latin"],
   display: "swap",
   preload: true,
 });
@@ -75,7 +83,7 @@ export default function RootLayout({ children }: RootLayoutProps) {
   return (
     <html
       lang="en"
-      className={`${cormorant.variable} ${plusJakarta.variable} h-full`}
+      className={`${cormorant.variable} ${plusJakarta.variable} ${courierPrime.variable} h-full`}
     >
       <body className="min-h-full flex flex-col antialiased">
         <ThemeProvider>{children}</ThemeProvider>

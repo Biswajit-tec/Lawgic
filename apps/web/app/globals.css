@@ -62,6 +62,7 @@
   /* These CSS vars are injected by Next.js font optimization (layout.tsx) */
   --font-serif:    var(--font-cormorant), "Cormorant Garamond", "Georgia", serif;
   --font-sans:     var(--font-plus-jakarta), "Plus Jakarta Sans", "Inter", system-ui, sans-serif;
+  --font-typewriter: var(--font-typewriter), "Courier Prime", "Courier New", Courier, monospace;
 
   /* Type Scale (fluid) */
   --text-display:  clamp(3rem, 7vw, 6rem);
@@ -563,5 +564,9 @@ html.lenis, html.lenis body {
 
 .animate-fadeIn {
   animation: fadeIn 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.font-typewriter {
+  font-family: var(--font-typewriter);
 }
 
