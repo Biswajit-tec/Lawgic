@@ -1,0 +1,70 @@
+version: "3.9"
+
+# =============================================================================
+# LAWgic — Docker Compose Development Environment
+# Provides local PostgreSQL + pgvector and Redis for development
+# NOTE: Docker must be installed. See README.md for setup.
+# =============================================================================
+
+services:
+  # ─── PostgreSQL + pgvector ──────────────────────────────────────────────────
+  postgres:
+    image: pgvector/pgvector:pg16
+    container_name: lawgic-postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: lawgic_dev
+      POSTGRES_USER: lawgic
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-dev_password_change_me}
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      # Run migrations on startup
+      - ./infrastructure/database/migrations:/docker-entrypoint-initdb.d
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U lawgic -d lawgic_dev"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  # ─── Redis ──────────────────────────────────────────────────────────────────
+  redis:
+    image: redis:7-alpine
+    container_name: lawgic-redis
+    restart: unless-stopped
+    ports:
+      - "6379:6379"
+    command: redis-server --appendonly yes --maxmemory 256mb --maxmemory-policy allkeys-lru
+    volumes:
+      - redis_data:/data
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  # ─── Redis Commander (Development UI) ───────────────────────────────────────
+  redis-commander:
+    image: rediscommander/redis-commander:latest
+    container_name: lawgic-redis-ui
+    restart: unless-stopped
+    environment:
+      REDIS_HOSTS: "local:redis:6379"
+    ports:
+      - "8081:8081"
+    depends_on:
+      redis:
+        condition: service_healthy
+    profiles:
+      - tools  # Only start with: docker compose --profile tools up
+
+volumes:
+  postgres_data:
+    driver: local
+  redis_data:
+    driver: local
+
+networks:
+  default:
+    name: lawgic-network

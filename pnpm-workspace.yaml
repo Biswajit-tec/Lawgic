@@ -1,0 +1,11 @@
+packages:
+  - "apps/*"
+  - "packages/*"
+
+onlyBuiltDependencies:
+  - "@scarf/scarf"
+  - "msgpackr-extract"
+  - "sharp"
+  - "unrs-resolver"
+
+unsafePerm: true

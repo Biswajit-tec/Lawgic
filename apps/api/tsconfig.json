@@ -1,0 +1,20 @@
+{
+  "extends": "../../tsconfig.base.json",
+  "compilerOptions": {
+    "module": "CommonJS",
+    "moduleResolution": "node",
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
+    "outDir": "./dist",
+    "baseUrl": "./",
+    "paths": {
+      "@lawgic/types": ["../../packages/types/src"],
+      "@lawgic/validation": ["../../packages/validation/src"],
+      "@lawgic/config": ["../../packages/config/src"]
+    },
+    "noUnusedLocals": false,
+    "noUnusedParameters": false
+  },
+  "include": ["src/**/*", "tests/**/*", "../../packages/types/src/**/*", "../../packages/validation/src/**/*", "../../packages/config/src/**/*"],
+  "exclude": ["node_modules", "dist"]
+}

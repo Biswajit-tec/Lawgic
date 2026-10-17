@@ -1,0 +1,16 @@
+{
+  "extends": "../../tsconfig.base.json",
+  "compilerOptions": {
+    "module": "CommonJS",
+    "moduleResolution": "node",
+    "outDir": "./dist",
+    "paths": {
+      "@lawgic/types": ["../../packages/types/src"],
+      "@lawgic/config": ["../../packages/config/src"]
+    },
+    "noUnusedLocals": false,
+    "noUnusedParameters": false
+  },
+  "include": ["src/**/*", "../../packages/types/src/**/*", "../../packages/config/src/**/*"],
+  "exclude": ["node_modules", "dist"]
+}

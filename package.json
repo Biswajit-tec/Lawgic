@@ -1,0 +1,35 @@
+{
+  "name": "lawgic",
+  "version": "0.1.0",
+  "private": true,
+  "description": "LAWgic — Making India's legal system understandable. AI-powered multilingual legal information platform.",
+  "license": "UNLICENSED",
+  "engines": {
+    "node": ">=22.0.0",
+    "pnpm": ">=12.0.0"
+  },
+  "scripts": {
+    "dev": "pnpm --parallel -r run dev",
+    "dev:web": "pnpm --filter @lawgic/web dev",
+    "dev:api": "pnpm --filter @lawgic/api dev",
+    "dev:worker": "pnpm --filter @lawgic/worker dev",
+    "build": "pnpm -r run build",
+    "build:packages": "pnpm --filter './packages/**' -r run build",
+    "test": "pnpm -r run test",
+    "test:ci": "pnpm -r run test:ci",
+    "lint": "pnpm -r run lint",
+    "lint:fix": "pnpm -r run lint:fix",
+    "format": "pnpm -r run format",
+    "format:check": "pnpm -r run format:check",
+    "typecheck": "pnpm -r run typecheck",
+    "clean": "pnpm -r run clean && rimraf node_modules",
+    "db:migrate": "pnpm --filter @lawgic/api run db:migrate",
+    "db:migrate:create": "pnpm --filter @lawgic/api run db:migrate:create",
+    "db:seed": "pnpm --filter @lawgic/api run db:seed",
+    "prepare": "node -e \"try { require('husky').install() } catch (e) { if (e.code !== 'MODULE_NOT_FOUND') throw e }\""
+  },
+  "devDependencies": {
+    "rimraf": "^5.0.0",
+    "typescript": "^5.7.0"
+  }
+}

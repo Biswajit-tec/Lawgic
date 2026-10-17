@@ -1,0 +1,17 @@
+{
+  "name": "@lawgic/types",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Shared TypeScript types and interfaces for all LAWgic services",
+  "main": "./src/index.ts",
+  "types": "./src/index.ts",
+  "scripts": {
+    "typecheck": "tsc --noEmit",
+    "build": "tsc -p tsconfig.build.json",
+    "clean": "rimraf dist"
+  },
+  "devDependencies": {
+    "rimraf": "^5.0.0",
+    "typescript": "^5.7.0"
+  }
+}
