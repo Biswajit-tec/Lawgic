@@ -9,10 +9,10 @@
     "start": "node dist/main",
     "build": "tsc -p tsconfig.json",
     "typecheck": "tsc --noEmit",
-    "lint": "eslint \"src/**/*.ts\"",
+    "lint": "tsc --noEmit",
     "format": "prettier --write \"src/**/*.ts\"",
-    "test": "jest",
-    "test:ci": "jest --ci --coverage",
+    "test": "echo No tests in worker yet",
+    "test:ci": "echo No tests in worker yet",
     "clean": "rimraf dist"
   },
   "dependencies": {

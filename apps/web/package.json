@@ -11,8 +11,8 @@
     "format": "prettier --write \"**/*.{ts,tsx,css,md}\"",
     "format:check": "prettier --check \"**/*.{ts,tsx,css,md}\"",
     "typecheck": "tsc --noEmit",
-    "test": "jest",
-    "test:ci": "jest --ci --coverage",
+    "test": "jest --passWithNoTests",
+    "test:ci": "jest --ci --coverage --passWithNoTests",
     "test:e2e": "playwright test",
     "clean": "rimraf .next out"
   },

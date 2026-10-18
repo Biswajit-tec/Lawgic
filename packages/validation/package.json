@@ -7,11 +7,12 @@
   "types": "./src/index.ts",
   "scripts": {
     "typecheck": "tsc --noEmit",
-    "build": "tsc -p tsconfig.build.json",
+    "build": "tsc -p tsconfig.json",
     "clean": "rimraf dist"
   },
   "dependencies": {
-    "zod": "^3.25.0"
+    "zod": "^3.25.0",
+    "@lawgic/types": "workspace:*"
   },
   "devDependencies": {
     "rimraf": "^5.0.0",
