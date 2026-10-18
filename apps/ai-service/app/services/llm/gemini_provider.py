@@ -9,7 +9,10 @@ from typing import Any
 import structlog
 
 try:
-    import google.generativeai as genai
+    from google.generativeai.client import configure as genai_configure
+    from google.generativeai.generative_models import GenerativeModel
+    from google.generativeai.models import list_models as genai_list_models
+    from google.generativeai.types import GenerationConfig
 
     GEMINI_AVAILABLE = True
 except ImportError:
@@ -39,9 +42,9 @@ class GeminiProvider(BaseLLMProvider):
     def __init__(self, api_key: str, model: str = "gemini-1.5-flash") -> None:
         if not GEMINI_AVAILABLE:
             raise ImportError("google-generativeai package not installed")
-        genai.configure(api_key=api_key)
+        genai_configure(api_key=api_key)
         self._model = model
-        self._client = genai.GenerativeModel(model)
+        self._client = GenerativeModel(model)
 
     @property
     def provider(self) -> LLMProvider:
@@ -53,7 +56,7 @@ class GeminiProvider(BaseLLMProvider):
 
     async def generate(self, request: GenerationRequest) -> GenerationResponse:
         model = request.model_override or self._model
-        client = genai.GenerativeModel(
+        client = GenerativeModel(
             model,
             system_instruction=self._build_system_instruction(request),
         )
@@ -64,7 +67,7 @@ class GeminiProvider(BaseLLMProvider):
         try:
             response = await client.generate_content_async(
                 gemini_messages,
-                generation_config=genai.GenerationConfig(
+                generation_config=GenerationConfig(
                     max_output_tokens=request.max_output_tokens,
                     temperature=request.temperature,
                 ),
@@ -115,7 +118,7 @@ class GeminiProvider(BaseLLMProvider):
 
     async def health_check(self) -> bool:
         try:
-            models = genai.list_models()
+            models = genai_list_models()
             return any(True for _ in models)
         except Exception:
             return False
