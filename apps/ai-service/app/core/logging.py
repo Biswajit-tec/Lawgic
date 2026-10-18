@@ -26,6 +26,7 @@ def configure_logging() -> None:
         structlog.processors.StackInfoRenderer(),
     ]
 
+    renderer: Any
     if settings.ENVIRONMENT == "production":
         # JSON output for log aggregation systems
         renderer = structlog.processors.JSONRenderer()
@@ -36,7 +37,7 @@ def configure_logging() -> None:
     structlog.configure(
         processors=[
             *shared_processors,
-            structlog.stdlib.ProcessorFormatter.wrap_for_formatter,
+            renderer,
         ],
         wrapper_class=structlog.make_filtering_bound_logger(log_level),
         context_class=dict,

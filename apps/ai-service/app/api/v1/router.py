@@ -2,7 +2,7 @@
 
 from fastapi import APIRouter
 
-from app.api.v1.endpoints import health, ocr, embeddings, llm, translation
+from app.api.v1.endpoints import embeddings, health, llm, ocr, translation
 
 api_router = APIRouter()
 

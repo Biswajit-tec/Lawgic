@@ -5,10 +5,10 @@ Supports Bhashini, Sarvam AI, and open-source alternatives.
 
 from abc import ABC, abstractmethod
 from dataclasses import dataclass
-from enum import Enum
+from enum import StrEnum
 
 
-class TranslationProvider(str, Enum):
+class TranslationProvider(StrEnum):
     BHASHINI = "bhashini"
     SARVAM_AI = "sarvam_ai"
     GOOGLE_TRANSLATE = "google_translate"
@@ -38,8 +38,7 @@ class BaseTranslationProvider(ABC):
 
     @property
     @abstractmethod
-    def provider(self) -> TranslationProvider:
-        ...
+    def provider(self) -> TranslationProvider: ...
 
     @abstractmethod
     async def translate(self, request: TranslationRequest) -> TranslationResponse:
@@ -47,8 +46,7 @@ class BaseTranslationProvider(ABC):
         ...
 
     @abstractmethod
-    async def health_check(self) -> bool:
-        ...
+    async def health_check(self) -> bool: ...
 
 
 class TranslationError(Exception):

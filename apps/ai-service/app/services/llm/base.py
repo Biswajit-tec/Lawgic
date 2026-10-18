@@ -6,18 +6,18 @@ The application business logic MUST NOT depend on provider-specific APIs.
 
 from abc import ABC, abstractmethod
 from dataclasses import dataclass
-from enum import Enum
+from enum import StrEnum
 from typing import Any
 
 
-class LLMProvider(str, Enum):
+class LLMProvider(StrEnum):
     GOOGLE_GEMINI = "google_gemini"
     OPENAI = "openai"
     ANTHROPIC = "anthropic"
     LOCAL_OLLAMA = "local_ollama"
 
 
-class MessagePartType(str, Enum):
+class MessagePartType(StrEnum):
     TEXT = "text"
     # SECURITY: Document content is marked as DATA, not instructions
     DOCUMENT_DATA = "document_data"

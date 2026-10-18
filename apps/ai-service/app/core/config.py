@@ -5,8 +5,9 @@ Fails fast if required environment variables are missing.
 """
 
 from typing import Literal
+
+from pydantic import field_validator
 from pydantic_settings import BaseSettings, SettingsConfigDict
-from pydantic import field_validator, AnyHttpUrl
 
 
 class Settings(BaseSettings):
@@ -26,7 +27,7 @@ class Settings(BaseSettings):
     ENVIRONMENT: Literal["development", "test", "staging", "production"] = "development"
     VERSION: str = "0.1.0"
     PORT: int = 8001
-    HOST: str = "0.0.0.0"
+    HOST: str = "0.0.0.0"  # noqa: S104 — Required for containerized deployment port binding
 
     # ─── Security ──────────────────────────────────────────────────────────────
     # Internal API key — this service is NOT publicly accessible
@@ -50,9 +51,9 @@ class Settings(BaseSettings):
 
     # ─── Embedding ─────────────────────────────────────────────────────────────
     # Use local multilingual model by default to reduce costs
-    EMBEDDING_PROVIDER: Literal[
-        "sentence_transformers_local", "google_text_embedding", "openai_text_embedding"
-    ] = "sentence_transformers_local"
+    EMBEDDING_PROVIDER: Literal["sentence_transformers_local", "google_text_embedding", "openai_text_embedding"] = (
+        "sentence_transformers_local"
+    )
     EMBEDDING_MODEL: str = "intfloat/multilingual-e5-base"  # Good for Indian languages
     EMBEDDING_DIMENSION: int = 768
 
@@ -89,4 +90,4 @@ class Settings(BaseSettings):
         return v
 
 
-settings = Settings()
+settings = Settings()  # type: ignore[call-arg]

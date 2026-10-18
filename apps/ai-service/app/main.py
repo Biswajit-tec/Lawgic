@@ -2,8 +2,8 @@
 LAWgic AI Service — FastAPI Application Entry Point
 """
 
+from collections.abc import AsyncGenerator
 from contextlib import asynccontextmanager
-from typing import AsyncGenerator
 
 import structlog
 from fastapi import FastAPI, Request
@@ -22,14 +22,14 @@ async def lifespan(app: FastAPI) -> AsyncGenerator[None, None]:
     """Application lifespan events."""
     configure_logging()
     logger.info("LAWgic AI Service starting", version=settings.VERSION, environment=settings.ENVIRONMENT)
-    
+
     # TODO: Initialize database connection pool
     # TODO: Load embedding model (lazy or eager based on memory constraints)
     # TODO: Verify LLM provider connectivity
-    
+
     logger.info("LAWgic AI Service ready")
     yield
-    
+
     logger.info("LAWgic AI Service shutting down")
     # TODO: Close database connections, cleanup resources
 

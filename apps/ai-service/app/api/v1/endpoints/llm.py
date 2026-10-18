@@ -1,5 +1,7 @@
 """LLM generation endpoint — internal only."""
 
+from typing import Any
+
 from fastapi import APIRouter, Depends, HTTPException
 from pydantic import BaseModel
 
@@ -11,7 +13,7 @@ router = APIRouter(dependencies=[Depends(verify_internal_api_key)])
 class GenerationRequest(BaseModel):
     system_prompt: str
     developer_instructions: str | None = None
-    messages: list[dict]
+    messages: list[dict[str, Any]]
     max_output_tokens: int | None = None
     temperature: float = 0.1
 

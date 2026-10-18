@@ -2,10 +2,10 @@ packages:
   - "apps/*"
   - "packages/*"
 
-onlyBuiltDependencies:
-  - "@scarf/scarf"
-  - "msgpackr-extract"
-  - "sharp"
-  - "unrs-resolver"
-
-unsafePerm: true
+allowBuilds:
+  "@scarf/scarf": false
+  "@vgpu/adapter-node": true
+  msgpackr-extract: true
+  sharp: true
+  unrs-resolver: true
+  webgpu: true

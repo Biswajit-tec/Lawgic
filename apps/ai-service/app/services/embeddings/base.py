@@ -5,10 +5,10 @@ Supports local multilingual models (default, free) and cloud providers.
 
 from abc import ABC, abstractmethod
 from dataclasses import dataclass
-from enum import Enum
+from enum import StrEnum
 
 
-class EmbeddingProvider(str, Enum):
+class EmbeddingProvider(StrEnum):
     SENTENCE_TRANSFORMERS_LOCAL = "sentence_transformers_local"
     GOOGLE_TEXT_EMBEDDING = "google_text_embedding"
     OPENAI_TEXT_EMBEDDING = "openai_text_embedding"
@@ -42,13 +42,11 @@ class BaseEmbeddingProvider(ABC):
 
     @property
     @abstractmethod
-    def provider(self) -> EmbeddingProvider:
-        ...
+    def provider(self) -> EmbeddingProvider: ...
 
     @property
     @abstractmethod
-    def dimensions(self) -> int:
-        ...
+    def dimensions(self) -> int: ...
 
     @abstractmethod
     async def embed(self, request: EmbeddingRequest) -> EmbeddingResponse:
@@ -56,8 +54,7 @@ class BaseEmbeddingProvider(ABC):
         ...
 
     @abstractmethod
-    async def health_check(self) -> bool:
-        ...
+    async def health_check(self) -> bool: ...
 
 
 class EmbeddingError(Exception):

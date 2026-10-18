@@ -4,10 +4,10 @@ OCR Service Abstraction — Abstract base class.
 
 from abc import ABC, abstractmethod
 from dataclasses import dataclass
-from enum import Enum
+from enum import StrEnum
 
 
-class OCRProvider(str, Enum):
+class OCRProvider(StrEnum):
     TESSERACT_LOCAL = "tesseract_local"
     AWS_TEXTRACT = "aws_textract"
     GOOGLE_DOCUMENT_AI = "google_document_ai"
@@ -59,8 +59,7 @@ class BaseOCRProvider(ABC):
 
     @property
     @abstractmethod
-    def provider(self) -> OCRProvider:
-        ...
+    def provider(self) -> OCRProvider: ...
 
     @abstractmethod
     async def process(self, request: OCRRequest) -> OCRResponse:
@@ -68,8 +67,7 @@ class BaseOCRProvider(ABC):
         ...
 
     @abstractmethod
-    async def health_check(self) -> bool:
-        ...
+    async def health_check(self) -> bool: ...
 
 
 class OCRError(Exception):

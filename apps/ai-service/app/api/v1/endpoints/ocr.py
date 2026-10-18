@@ -1,5 +1,7 @@
 """OCR endpoint — accepts document bytes, returns extracted text."""
 
+from typing import Any
+
 from fastapi import APIRouter, Depends, HTTPException
 from pydantic import BaseModel
 
@@ -17,7 +19,7 @@ class OCRRequest(BaseModel):
 
 class OCRResponse(BaseModel):
     document_id: str
-    pages: list[dict]
+    pages: list[dict[str, Any]]
     overall_confidence: float
     provider: str
     processing_time_ms: int
