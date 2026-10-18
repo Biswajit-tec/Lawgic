@@ -5,6 +5,7 @@ import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { LedgerMarginRuler } from "@/components/motion/LedgerMarginRuler";
 import { SpotlightCard } from "@/components/motion/SpotlightCard";
+import FadeContent from "@/components/motion/FadeContent";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -67,7 +68,8 @@ export function TheDifferenceSection() {
       <LedgerMarginRuler start={1030} end={1180} step={10} theme="light" />
 
       <div className="container-lawgic relative z-10">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-center">
+        <FadeContent effect="fade" duration={0.9} threshold={0.1}>
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-center">
           {/* Left Column (5 cols) */}
           <div className="lg:col-span-5 flex flex-col gap-6">
             <div>
@@ -186,7 +188,8 @@ export function TheDifferenceSection() {
             </div>
           </div>
         </div>
-      </div>
+      </FadeContent>
+    </div>
     </section>
   );
 }

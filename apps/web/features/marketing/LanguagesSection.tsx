@@ -5,6 +5,7 @@ import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { SpotlightCard } from "@/components/motion/SpotlightCard";
 import { LedgerMarginRuler } from "@/components/motion/LedgerMarginRuler";
+import FadeContent from "@/components/motion/FadeContent";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -148,8 +149,9 @@ export function LanguagesSection() {
       <LedgerMarginRuler start={1380} end={1480} step={10} theme="dark" />
 
       <div className="container-lawgic relative z-10">
-        {/* Eyebrow tag */}
-        <div className="mb-4">
+        <FadeContent effect="fade" duration={0.9} threshold={0.1}>
+          {/* Eyebrow tag */}
+          <div className="mb-4">
           <span className="text-xs font-sans font-semibold tracking-[0.2em] uppercase text-[var(--brass-light)]">
             05 / Pan-Indian Multilingual Reach
           </span>
@@ -251,6 +253,7 @@ export function LanguagesSection() {
             );
           })}
         </div>
+        </FadeContent>
       </div>
     </section>
   );

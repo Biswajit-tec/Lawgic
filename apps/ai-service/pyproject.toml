@@ -38,8 +38,7 @@ dependencies = [
     "psycopg[binary]>=3.2.0",
     # Redis
     "redis>=5.2.0",
-    # Data validation
-    "zod-python>=0.1.0; python_requires>='3.11'",
+    # Data validation (pydantic handles all validation)
 ]
 
 [project.optional-dependencies]

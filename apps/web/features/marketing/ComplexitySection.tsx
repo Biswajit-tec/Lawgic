@@ -7,6 +7,7 @@ import { useTheme } from "@/components/layout/ThemeContext";
 import { LedgerMarginRuler } from "@/components/motion/LedgerMarginRuler";
 import { PaperStackCarousel } from "./stamp-paper/PaperStackCarousel";
 import { StickyNotesCluster } from "./stamp-paper/StickyNotesCluster";
+import FadeContent from "@/components/motion/FadeContent";
 import type { NoticeScenarioData } from "./stamp-paper/LegalNoticeStampPaper";
 import { ArrowDown } from "lucide-react";
 
@@ -395,30 +396,32 @@ export function ComplexitySection() {
             Left: 3D Stamp Paper Deck Carousel (shuffles card to back on scroll/click)
             Right: Authentic 3 Sticky Notes Cluster (revealed one by one per notice)
             ========================================================================= */}
-        <div className="relative z-10 w-full max-w-6xl flex flex-col lg:flex-row items-center justify-center gap-6 sm:gap-8 lg:gap-10 xl:gap-14">
-          
-          {/* LEFT: 3D Stamp Paper Deck Carousel */}
-          <div className="w-full flex justify-center">
-            <PaperStackCarousel
-              scenarios={SCENARIOS_DATA}
-              activeIndex={activeIndex}
-              onSelectIndex={handleSelectIndex}
-              isStamped={true}
-              notaryColor={scenarioNotaryColor}
-            />
-          </div>
+        <FadeContent effect="mist" duration={1.4} threshold={0.12} className="w-full flex justify-center">
+          <div className="relative z-10 w-full max-w-6xl flex flex-col lg:flex-row items-center justify-center gap-6 sm:gap-8 lg:gap-10 xl:gap-14">
+            
+            {/* LEFT: 3D Stamp Paper Deck Carousel */}
+            <div className="w-full flex justify-center">
+              <PaperStackCarousel
+                scenarios={SCENARIOS_DATA}
+                activeIndex={activeIndex}
+                onSelectIndex={handleSelectIndex}
+                isStamped={true}
+                notaryColor={scenarioNotaryColor}
+              />
+            </div>
 
-          {/* RIGHT: Authentic 3 Sticky Notes Cluster (Revealed one by one per stamp paper) */}
-          <div className="w-full flex justify-center transition-all duration-500 ease-out">
-            <StickyNotesCluster
-              scenarios={SCENARIOS_DATA}
-              activeIndex={activeIndex}
-              maxRevealedIndex={maxRevealedIndex}
-              onSelectIndex={handleSelectIndex}
-            />
-          </div>
+            {/* RIGHT: Authentic 3 Sticky Notes Cluster (Revealed one by one per stamp paper) */}
+            <div className="w-full flex justify-center transition-all duration-500 ease-out">
+              <StickyNotesCluster
+                scenarios={SCENARIOS_DATA}
+                activeIndex={activeIndex}
+                maxRevealedIndex={maxRevealedIndex}
+                onSelectIndex={handleSelectIndex}
+              />
+            </div>
 
-        </div>
+          </div>
+        </FadeContent>
 
         {/* Bottom Scroll Helper Cue */}
         <div className="mt-3 sm:mt-4 flex items-center gap-2 text-[11px] sm:text-xs font-mono text-[var(--brass-light)] opacity-85 shrink-0">

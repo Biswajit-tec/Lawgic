@@ -6,6 +6,7 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { AvatarMatrix } from "@/components/motion/AvatarMatrix";
 import { LaurelWreathSeal } from "@/components/motion/LaurelWreathSeal";
 import { LedgerMarginRuler } from "@/components/motion/LedgerMarginRuler";
+import FadeContent from "@/components/motion/FadeContent";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -49,38 +50,40 @@ export function SocialProofSection() {
       {/* Signature Coordinate Rulers */}
       <LedgerMarginRuler start={1190} end={1370} step={15} theme="light" />
 
-      <div ref={contentRef} className="container-lawgic relative z-10 text-center">
-        {/* Interactive Staggered Avatar Wall */}
-        <div className="mb-10">
-          <AvatarMatrix />
-        </div>
+      <div className="container-lawgic relative z-10 text-center">
+        <FadeContent effect="fade" duration={0.9} threshold={0.1}>
+          {/* Interactive Staggered Avatar Wall */}
+          <div className="mb-10">
+            <AvatarMatrix />
+          </div>
 
-        {/* Section Headline */}
-        <h2 className="font-serif text-3xl sm:text-4xl md:text-5xl font-semibold text-[var(--charcoal)] tracking-tight leading-[1.2] max-w-2xl mx-auto mb-14">
-          Trusted by founders, citizens, and families across India.
-        </h2>
+          {/* Section Headline */}
+          <h2 className="font-serif text-3xl sm:text-4xl md:text-5xl font-semibold text-[var(--charcoal)] tracking-tight leading-[1.2] max-w-2xl mx-auto mb-14">
+            Trusted by founders, citizens, and families across India.
+          </h2>
 
-        {/* Three Golden Laurel Wreath Seals matching Frame 16 & 18 */}
-        <div className="flex flex-wrap items-center justify-center gap-10 sm:gap-16 max-w-4xl mx-auto pt-6 border-t border-[var(--stone-faint)]/60">
-          <LaurelWreathSeal
-            title="Top Legal Tech"
-            subtitle="Accessibility Innovation"
-            year="2026"
-            stars={3}
-          />
-          <LaurelWreathSeal
-            title="Citizen Trust"
-            subtitle="Satisfaction Leader"
-            year="2026"
-            stars={3}
-          />
-          <LaurelWreathSeal
-            title="Verified AI"
-            subtitle="Source-Grounded Quality"
-            year="2026"
-            stars={3}
-          />
-        </div>
+          {/* Three Golden Laurel Wreath Seals matching Frame 16 & 18 */}
+          <div className="flex flex-wrap items-center justify-center gap-10 sm:gap-16 max-w-4xl mx-auto pt-6 border-t border-[var(--stone-faint)]/60">
+            <LaurelWreathSeal
+              title="Top Legal Tech"
+              subtitle="Accessibility Innovation"
+              year="2026"
+              stars={3}
+            />
+            <LaurelWreathSeal
+              title="Citizen Trust"
+              subtitle="Satisfaction Leader"
+              year="2026"
+              stars={3}
+            />
+            <LaurelWreathSeal
+              title="Verified AI"
+              subtitle="Source-Grounded Quality"
+              year="2026"
+              stars={3}
+            />
+          </div>
+        </FadeContent>
       </div>
     </section>
   );

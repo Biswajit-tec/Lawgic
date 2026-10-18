@@ -1,22 +1,33 @@
 "use client";
 
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef, useState, useCallback } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { useTheme } from "@/components/layout/ThemeContext";
 import { LedgerMarginRuler } from "@/components/motion/LedgerMarginRuler";
-import { Magnet } from "@/components/motion/Magnet";
-import { ConstitutionBook } from "./what-we-do/ConstitutionBook";
-import { Sparkles, ArrowRight, ShieldCheck } from "lucide-react";
+import AeroShards from "@/components/motion/AeroShards";
+import FadeContent from "@/components/motion/FadeContent";
+import { AntiqueParchmentMap } from "./what-we-do/AntiqueParchmentMap";
+import { ShieldCheck, ArrowRight, Sparkles } from "lucide-react";
 
 gsap.registerPlugin(ScrollTrigger);
 
 export function WhatWeDoSection() {
   const sectionRef = useRef<HTMLElement>(null);
-  const pinContainerRef = useRef<HTMLDivElement>(null);
+  const { currentThemeOption } = useTheme();
 
-  const [scrollProgress, setScrollProgress] = useState(0);
+  const [mapProgress, setMapProgress] = useState(0);
   const [hoveredNodeId, setHoveredNodeId] = useState<string | null>(null);
   const [selectedNodeId, setSelectedNodeId] = useState<string | null>(null);
+
+  const handleSetHovered = useCallback(
+    (id: string | null) => setHoveredNodeId(id),
+    []
+  );
+  const handleSetSelected = useCallback(
+    (id: string | null) => setSelectedNodeId(id),
+    []
+  );
 
   useEffect(() => {
     const prefersReducedMotion = window.matchMedia(
@@ -24,24 +35,23 @@ export function WhatWeDoSection() {
     ).matches;
 
     if (!sectionRef.current) return;
+
     if (prefersReducedMotion) {
-      setScrollProgress(1);
+      setMapProgress(1.0); // show completed map trail
       return;
     }
 
     const ctx = gsap.context(() => {
-      // Pinned ScrollTrigger for the Book Opening & Curvy Dotted Path Animation
-      // Scrub: 1 ensures buttery-smooth forward AND reverse scrubbing!
       ScrollTrigger.create({
         trigger: sectionRef.current,
         start: "top top",
-        end: "+=1600",
+        end: "+=2600",
         pin: true,
         pinSpacing: true,
-        scrub: 1,
+        scrub: 1.2,
         anticipatePin: 1,
         onUpdate: (self) => {
-          setScrollProgress(self.progress);
+          setMapProgress(self.progress);
         },
       });
     }, sectionRef);
@@ -54,91 +64,104 @@ export function WhatWeDoSection() {
       ref={sectionRef}
       id="what-we-do"
       aria-labelledby="what-we-do-heading"
-      className="relative min-h-screen w-full bg-[#FAF7F0] overflow-hidden select-none"
-      style={{
-        backgroundImage: `
-          radial-gradient(#E8DEC8 0.75px, transparent 0.75px),
-          linear-gradient(180deg, #FDFBF7 0%, #FAF6EE 50%, #F5EFE4 100%)
-        `,
-        backgroundSize: "20px 20px, 100% 100%",
-        color: "var(--charcoal)",
-      }}
+      className="relative min-h-screen w-full bg-white overflow-hidden select-none"
     >
+      {/* =====================================================================
+          BACKGROUND: AEROSHARDS IN THEME-AWARE SECONDARY DARK COLOR & ACCENT
+          Keeps the background clean white as requested, with glass shards floating
+          ===================================================================== */}
+      <div className="absolute inset-0 pointer-events-auto overflow-hidden opacity-85 z-0" aria-hidden="true">
+        <AeroShards
+          shardColor={currentThemeOption.primaryHex}
+          accentColor={currentThemeOption.accentHex}
+          placement="full"
+          material="glass"
+          markers="plus"
+          count={1200}
+          depthOfField={0.75}
+          vignette={0.2}
+          mouseInteraction
+          pulseOnClick
+          holdToGather
+          lightMode={true}
+          shardSize={1}
+          spread={1}
+          twist={1}
+          billow={1}
+          speed={0.8}
+          scale={1}
+          glow={0.25}
+          grain={0.04}
+          intro
+          mouseStrength={0.6}
+          parallax={0.5}
+          paused={false}
+        />
+      </div>
+
       {/* Signature Coordinate Rulers in Light Theme */}
       <LedgerMarginRuler start={470} end={590} step={10} theme="light" />
 
-      {/* Atmospheric Ambient Warmth */}
-      <div
-        className="pointer-events-none absolute inset-0 opacity-40"
-        style={{
-          background:
-            "radial-gradient(ellipse 70% 60% at 50% 50%, rgba(217, 119, 6, 0.08) 0%, transparent 80%)",
-        }}
-        aria-hidden="true"
-      />
-
       {/* Pinned Stage Container */}
-      <div
-        ref={pinContainerRef}
-        className="relative z-10 w-full min-h-screen flex flex-col items-center justify-between px-4 sm:px-6 md:px-8 pt-16 sm:pt-20 pb-8"
-      >
+      <div className="relative z-10 w-full min-h-screen flex flex-col items-center justify-between px-3 sm:px-6 md:px-8 pt-20 sm:pt-24 pb-3">
         {/* =====================================================================
-            TOP SECTION HEADER
+            TOP SECTION HEADER (NO PILL BADGE)
             ===================================================================== */}
-        <div className="text-center max-w-3xl mx-auto shrink-0">
-          <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-mono font-semibold uppercase tracking-[0.2em] bg-[#F5E6DC] text-[#78350F] border border-[#F5D0C5] mb-2 shadow-xs">
-            <Sparkles className="w-3.5 h-3.5 text-[#B45309]" />
-            02 // PRACTICE AREAS &amp; STATUTORY CODES
-          </div>
-
-          <h2
-            id="what-we-do-heading"
-            className="font-serif text-2xl sm:text-3xl md:text-4xl lg:text-[2.6rem] font-bold text-[#1C1917] tracking-tight leading-[1.15]"
-          >
-            Full-Spectrum Legal Clarity for Citizens &amp; Founders
-          </h2>
-
-          <p className="font-sans text-xs sm:text-sm text-[#574C40] leading-relaxed max-w-xl mx-auto mt-1.5">
-            Every notice decoded, every clause verified, every right defended — anchored directly in the{" "}
-            <span className="font-semibold text-[#78350F]">Constitution of India</span>.
-          </p>
-        </div>
-
-        {/* =====================================================================
-            CENTER PIECE: CONSTITUTION OF INDIA 3D BOOK & CURVY DOTTED PATH
-            Book opens in 3D perspective -> Curvy path draws left to right -> Nodes reveal
-            ===================================================================== */}
-        <div className="w-full flex-1 flex items-center justify-center my-2 sm:my-3">
-          <ConstitutionBook
-            scrollProgress={scrollProgress}
-            hoveredNodeId={hoveredNodeId}
-            setHoveredNodeId={setHoveredNodeId}
-            selectedNodeId={selectedNodeId}
-            setSelectedNodeId={setSelectedNodeId}
-          />
-        </div>
-
-        {/* =====================================================================
-            CENTER CALL-TO-ACTION (CTA)
-            Prominently positioned at the center bottom of the section
-            ===================================================================== */}
-        <div className="flex flex-col items-center gap-2 shrink-0">
-          <Magnet magnetStrength={0.25} padding={25}>
-            <a
-              href="#get-started"
-              className="inline-flex items-center gap-2.5 px-7 py-3 rounded-full font-sans font-bold text-xs tracking-wider uppercase text-[#FEF3C7] bg-[#7F1D1D] hover:bg-[#991B1B] active:scale-98 transition-all duration-300 shadow-[0_10px_25px_-5px_rgba(127,29,29,0.45)] hover:shadow-[0_15px_32px_-5px_rgba(127,29,29,0.55)] border border-[#FDE047]/40 cursor-pointer"
+        <FadeContent effect="fade" duration={0.9} threshold={0.1} className="w-full">
+          <div className="text-center max-w-3xl mx-auto shrink-0 mb-1">
+            <h2
+              id="what-we-do-heading"
+              className="font-serif text-lg sm:text-2xl md:text-3xl lg:text-[2.1rem] font-bold text-[#1C1917] tracking-tight leading-tight"
             >
-              <span>Decode Your Document Now</span>
-              <ArrowRight className="w-4 h-4 text-[#FDE047]" />
-            </a>
-          </Magnet>
+              Full-Spectrum Legal Clarity for Citizens &amp; Founders
+            </h2>
+            <p className="mt-1 text-[11px] sm:text-xs md:text-sm text-[#7A6E60] font-sans max-w-xl mx-auto">
+              From initial statutory notices to constitutional remedies — interactive judicial pipeline.
+            </p>
+          </div>
+        </FadeContent>
 
-          <div className="flex items-center gap-2 text-[10px] sm:text-[11px] font-mono text-[#78350F]">
+        {/* =====================================================================
+            CENTER PIECE: ANTIQUE PARCHMENT MAP WITH SERPENTINE TRACING TRAIL
+            ===================================================================== */}
+        <FadeContent effect="focus" duration={1.1} threshold={0.1} className="w-full flex-1 flex items-center justify-center my-0.5">
+          <div className="w-full flex items-center justify-center">
+            <AntiqueParchmentMap
+              scrollProgress={mapProgress}
+              hoveredNodeId={hoveredNodeId}
+              setHoveredNodeId={handleSetHovered}
+              selectedNodeId={selectedNodeId}
+              setSelectedNodeId={handleSetSelected}
+            />
+          </div>
+        </FadeContent>
+
+        {/* =====================================================================
+            BOTTOM CALL-TO-ACTION WITH LITTLE SPACING FROM THE MAP
+            ===================================================================== */}
+        <div className="shrink-0 flex flex-col items-center gap-1.5 mt-2 sm:mt-3 mb-1">
+          <a
+            href="/decode"
+            className="group relative inline-flex items-center gap-2.5 px-6 sm:px-8 py-2.5 sm:py-3 rounded-full text-white font-sans text-xs sm:text-sm font-semibold tracking-wide shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-[1.03]"
+            style={{
+              backgroundColor: currentThemeOption.primaryHex,
+              boxShadow: `0 8px 24px -4px ${currentThemeOption.primaryHex}55`,
+            }}
+          >
+            <Sparkles className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-[#FDE047] animate-pulse" />
+            <span>Decode Your Legal Document Now</span>
+            <ArrowRight className="w-3.5 h-3.5 sm:w-4 sm:h-4 transition-transform duration-300 group-hover:translate-x-1" />
+          </a>
+
+          {/* Statutory Confidentiality Badge */}
+          <div
+            className="flex items-center gap-2 text-[10px] sm:text-[11px] font-mono shrink-0 pt-0.5"
+            style={{ color: currentThemeOption.primaryHex }}
+          >
             <ShieldCheck className="w-3.5 h-3.5 text-[#16A34A]" />
-            <span>100% Confidential · Free Plain-Language Analysis · Grounded in 45+ Central Indian Acts</span>
+            <span>100% Confidential · Plain-Language Analysis · Grounded in 45+ Central Indian Acts</span>
           </div>
         </div>
-
       </div>
     </section>
   );

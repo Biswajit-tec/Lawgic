@@ -3,6 +3,7 @@
 import { useEffect, useRef } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import FadeContent from "@/components/motion/FadeContent";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -95,9 +96,10 @@ export function TrustSection() {
       }}
     >
       <div className="container-lawgic">
-        {/* Two-column layout */}
-        <div
-          style={{
+        <FadeContent effect="fade" duration={0.9} threshold={0.1}>
+          {/* Two-column layout */}
+          <div
+            style={{
             display: "grid",
             gridTemplateColumns: "1fr 1fr",
             gap: "clamp(3rem, 8vw, 8rem)",
@@ -250,6 +252,7 @@ export function TrustSection() {
             ))}
           </div>
         </div>
+        </FadeContent>
       </div>
     </section>
   );

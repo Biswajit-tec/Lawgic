@@ -34,6 +34,9 @@ export const metadata: Metadata = {
   },
   description:
     "Lawgic helps you understand legal documents, court orders, and government notices in plain language — in the language you know best.",
+  icons: {
+    icon: "/favicon.ico",
+  },
   keywords: [
     "legal document decoder",
     "Indian legal system",

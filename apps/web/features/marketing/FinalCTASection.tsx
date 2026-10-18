@@ -6,6 +6,7 @@ import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { Magnet } from "@/components/motion/Magnet";
 import { LedgerMarginRuler } from "@/components/motion/LedgerMarginRuler";
+import FadeContent from "@/components/motion/FadeContent";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -49,14 +50,15 @@ export function FinalCTASection() {
       <LedgerMarginRuler start={1490} end={1620} step={10} theme="light" />
 
       <div className="container-lawgic relative z-10">
-        <div
-          ref={cardRef}
-          className="relative rounded-3xl overflow-hidden p-8 sm:p-12 lg:p-16 text-[var(--ivory)] shadow-2xl"
-          style={{
-            backgroundColor: "var(--burgundy)",
-            backgroundImage: "radial-gradient(circle at 20% 50%, rgba(184, 147, 90, 0.15) 0%, transparent 60%)",
-          }}
-        >
+        <FadeContent effect="fade" duration={1.0} threshold={0.1}>
+          <div
+            ref={cardRef}
+            className="relative rounded-3xl overflow-hidden p-8 sm:p-12 lg:p-16 text-[var(--ivory)] shadow-2xl"
+            style={{
+              backgroundColor: "var(--burgundy)",
+              backgroundImage: "radial-gradient(circle at 20% 50%, rgba(184, 147, 90, 0.15) 0%, transparent 60%)",
+            }}
+          >
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center relative z-10">
             {/* Left Column (8 cols) */}
             <div className="lg:col-span-8 flex flex-col gap-6 max-w-2xl">
@@ -119,7 +121,8 @@ export function FinalCTASection() {
             </div>
           </div>
         </div>
-      </div>
+      </FadeContent>
+    </div>
     </section>
   );
 }
