@@ -1,82 +1,86 @@
 "use client";
 
-import { useState } from "react";
+import React, { useState } from "react";
 
 export function ChessMatrixGraphic() {
   const [hoveredCell, setHoveredCell] = useState<number | null>(4);
 
-  // 3x3 grid definition
+  // 9 Light-Colored Cubes in a 3x3 Chessboard Grid
   const cells = [
-    { id: 0, piece: null, label: "" },
-    { id: 1, piece: "♚", label: "Rights", active: true },
-    { id: 2, piece: null, label: "" },
-    { id: 3, piece: null, label: "" },
-    { id: 4, piece: "♞", label: "Strategy", active: true },
-    { id: 5, piece: "♛", label: "Precedent", active: true },
-    { id: 6, piece: "♝", label: "Counsel", active: true },
-    { id: 7, piece: "♜", label: "Defense", active: true },
-    { id: 8, piece: "♟", label: "Action", active: true },
+    { id: 0, piece: "♟", label: "Rights" },
+    { id: 1, piece: "♚", label: "Precedent" },
+    { id: 2, piece: "♟", label: "Statute" },
+    { id: 3, piece: "♜", label: "Defense" },
+    { id: 4, piece: "♞", label: "Strategy", isCenter: true },
+    { id: 5, piece: "♝", label: "Counsel" },
+    { id: 6, piece: "♟", label: "Clause" },
+    { id: 7, piece: "♛", label: "Advisory" },
+    { id: 8, piece: "⚖", label: "Action" },
   ];
 
   return (
-    <div className="relative w-full aspect-square max-w-[260px] mx-auto flex items-center justify-center p-3 select-none">
-      {/* Background circle */}
-      <div className="absolute inset-2 rounded-full border border-[var(--burgundy)] opacity-15" />
-      <div className="absolute inset-8 rounded-full border border-dashed border-[var(--stone-light)] opacity-30" />
+    <div className="relative w-full max-w-[205px] aspect-square mx-auto flex items-center justify-center select-none">
+      {/* 1. Underlying Soft Glow */}
+      <div className="absolute inset-2 rounded-2xl bg-[#5EEAD4]/20 blur-lg pointer-events-none" />
 
-      {/* 3x3 Grid */}
-      <div className="relative z-10 grid grid-cols-3 gap-1.5 w-[180px] h-[180px]">
-        {cells.map((cell) => {
-          const isSelected = hoveredCell === cell.id;
-          const isOdd = (Math.floor(cell.id / 3) + (cell.id % 3)) % 2 === 1;
+      {/* 2. Solid Light Chessboard Tray */}
+      <div
+        className="relative z-10 w-[195px] h-[195px] p-2 rounded-2xl bg-white/95 border border-white/80"
+        style={{
+          boxShadow:
+            "0 14px 28px rgba(0, 0, 0, 0.12), inset 0 1px 1px rgba(255, 255, 255, 0.9)",
+        }}
+      >
+        {/* 3. 3x3 Grid of 9 Light-Colored Tiles */}
+        <div className="grid grid-cols-3 gap-1.5 w-full h-full">
+          {cells.map((cell, idx) => {
+            const isSelected = hoveredCell === cell.id;
+            const row = Math.floor(idx / 3);
+            const col = idx % 3;
+            const isAlternate = (row + col) % 2 === 1;
 
-          return (
-            <div
-              key={cell.id}
-              onMouseEnter={() => setHoveredCell(cell.id)}
-              className="relative rounded-lg flex flex-col items-center justify-center transition-all duration-300 cursor-pointer border"
-              style={{
-                backgroundColor: isSelected
-                  ? "var(--burgundy)"
-                  : isOdd
-                  ? "rgba(184, 147, 90, 0.12)"
-                  : "rgba(244, 239, 228, 0.7)",
-                borderColor: isSelected
-                  ? "var(--burgundy-deep)"
-                  : "rgba(122, 110, 96, 0.15)",
-                transform: isSelected ? "scale(1.06)" : "scale(1)",
-                boxShadow: isSelected ? "0 8px 20px rgba(110, 31, 31, 0.25)" : "none",
-              }}
-            >
-              {cell.piece ? (
-                <>
-                  <span
-                    className="text-2xl transition-colors duration-200"
-                    style={{
-                      color: isSelected
-                        ? "var(--ivory)"
-                        : isOdd
-                        ? "var(--burgundy)"
-                        : "var(--charcoal)",
-                    }}
-                  >
-                    {cell.piece}
-                  </span>
-                  <span
-                    className="text-[7.5px] font-sans font-medium tracking-tight uppercase transition-colors"
-                    style={{
-                      color: isSelected ? "rgba(244,239,228,0.8)" : "var(--stone)",
-                    }}
-                  >
-                    {cell.label}
-                  </span>
-                </>
-              ) : (
-                <span className="w-1.5 h-1.5 rounded-full bg-[var(--stone-faint)]" />
-              )}
-            </div>
-          );
-        })}
+            return (
+              <div
+                key={cell.id}
+                onMouseEnter={() => setHoveredCell(cell.id)}
+                className={`relative rounded-xl flex flex-col items-center justify-center cursor-pointer transition-colors duration-200 border ${
+                  isSelected
+                    ? "border-[#004741]/50 bg-[#E6F4F1] shadow-xs"
+                    : cell.isCenter
+                    ? "border-[#B8935A]/50 bg-[#FFFDF8] shadow-xs"
+                    : isAlternate
+                    ? "border-black/[0.05] bg-[#F4EFE6] shadow-xs"
+                    : "border-black/[0.04] bg-white shadow-xs"
+                }`}
+              >
+                {/* Specular cushion highlight on tile */}
+                <div className="absolute inset-0 rounded-xl pointer-events-none bg-gradient-to-b from-white/70 via-transparent to-black/[0.03]" />
+
+                {/* Chess piece symbol */}
+                <span
+                  className={`text-xl sm:text-2xl leading-none mb-0.5 filter drop-shadow-xs transition-colors duration-200 ${
+                    cell.isCenter || isSelected
+                      ? "text-[#004741]"
+                      : "text-[#004741]/85"
+                  }`}
+                >
+                  {cell.piece}
+                </span>
+
+                {/* Subtitle label */}
+                <span
+                  className={`text-[7px] font-sans font-bold tracking-wider uppercase transition-colors duration-200 ${
+                    cell.isCenter || isSelected
+                      ? "text-[#004741]"
+                      : "text-[#2A7B72]"
+                  }`}
+                >
+                  {cell.label}
+                </span>
+              </div>
+            );
+          })}
+        </div>
       </div>
     </div>
   );

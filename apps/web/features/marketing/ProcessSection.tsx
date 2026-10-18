@@ -7,6 +7,7 @@ import { BlurText } from "@/components/motion/BlurText";
 import { LedgerMarginRuler } from "@/components/motion/LedgerMarginRuler";
 import { SpotlightCard } from "@/components/motion/SpotlightCard";
 import { TiltedCard } from "@/components/motion/TiltedCard";
+import { GlassMosaicBackground, MOSAIC_THEMES } from "@/components/motion/GlassMosaicBackground";
 import { RadarGraphic } from "@/components/motion/RadarGraphic";
 import { ChessMatrixGraphic } from "@/components/motion/ChessMatrixGraphic";
 import { CompassDialGraphic } from "@/components/motion/CompassDialGraphic";
@@ -87,82 +88,136 @@ export function ProcessSection() {
             ref={cardsRef}
             className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8 max-w-6xl mx-auto"
           >
-            {/* Card 01: Assess */}
+            {/* Card 01: Assess — Theme: Classic Ivory (Burgundy & Brass Gold) */}
             <div className="process-card">
-              <TiltedCard maxTilt={6} scale={1.02}>
+              <TiltedCard maxTilt={5} scale={1.02}>
                 <SpotlightCard
-                  className="bg-[var(--ivory-subtle)] border border-[var(--stone-faint)] rounded-2xl p-6 md:p-8 flex flex-col justify-between h-full shadow-sm hover:shadow-md transition-shadow"
-                  spotlightColor="rgba(110, 31, 31, 0.12)"
+                  className="relative rounded-3xl p-6 sm:p-7 md:p-8 flex flex-col justify-between h-[510px] sm:h-[540px] bg-[var(--ivory-subtle)] border border-[var(--stone-faint)]/70 shadow-md hover:shadow-2xl transition-all duration-500 overflow-hidden"
+                  spotlightColor={MOSAIC_THEMES["classic-ivory"].spotlightColor}
                 >
-                  {/* Visual Radar Graphic */}
-                  <div className="mb-6">
-                    <RadarGraphic />
-                  </div>
+                  {/* Glass Mosaic Background: Wavy water fadeout */}
+                  <GlassMosaicBackground theme="classic-ivory" tileSize={32} gap={2.6} radius={7} />
 
-                  {/* Card Content */}
-                  <div className="pt-4 border-t border-[var(--stone-faint)]/60">
-                    <div className="font-serif text-xl font-bold text-[var(--charcoal)] mb-2 flex items-center gap-2">
-                      <span className="text-[var(--burgundy)] text-sm font-sans font-semibold tracking-wider uppercase">01.</span>
-                      <span>Assess</span>
+                  {/* Clean Header at Top - directly on card surface, matching reference */}
+                  <div className="relative z-10">
+                    <div className="flex items-center justify-between mb-3.5">
+                      <span
+                        className="px-2.5 py-0.5 rounded-full text-[9px] font-mono font-bold tracking-wider uppercase text-white shadow-xs"
+                        style={{ backgroundColor: MOSAIC_THEMES["classic-ivory"].pillColor }}
+                      >
+                        01. ASSESS
+                      </span>
+                      <span
+                        className="text-[10px] font-mono font-bold tracking-wider uppercase flex items-center gap-1"
+                        style={{ color: MOSAIC_THEMES["classic-ivory"].accentHex }}
+                      >
+                        AUDIT <span>⚡</span>
+                      </span>
                     </div>
-                    <p className="font-sans text-sm text-[var(--stone)] leading-relaxed">
+
+                    <h3 className="font-serif text-xl sm:text-2xl font-bold text-[var(--charcoal)] mb-2.5 leading-snug">
+                      Assess Risk &amp; Deadlines
+                    </h3>
+
+                    <p className="font-sans text-xs sm:text-[13px] text-[var(--stone)] leading-relaxed">
                       We audit your current legal notice or contract, detect mandatory statutory
                       clauses, identify liability points, and calculate response deadlines.
                     </p>
                   </div>
+
+                  {/* Lower Stage: Graphic floating with solid porcelain base */}
+                  <div className="relative z-10 mt-auto flex items-center justify-center min-h-[220px] sm:min-h-[235px]">
+                    <RadarGraphic />
+                  </div>
                 </SpotlightCard>
               </TiltedCard>
             </div>
 
-            {/* Card 02: Advise */}
+            {/* Card 02: Advise — Theme: Sand & Cyprus (Emerald & Cyprus Teal) */}
             <div className="process-card">
-              <TiltedCard maxTilt={6} scale={1.02}>
+              <TiltedCard maxTilt={5} scale={1.02}>
                 <SpotlightCard
-                  className="bg-[var(--ivory-subtle)] border border-[var(--stone-faint)] rounded-2xl p-6 md:p-8 flex flex-col justify-between h-full shadow-sm hover:shadow-md transition-shadow"
-                  spotlightColor="rgba(184, 147, 90, 0.16)"
+                  className="relative rounded-3xl p-6 sm:p-7 md:p-8 flex flex-col justify-between h-[510px] sm:h-[540px] bg-[var(--ivory-subtle)] border border-[var(--stone-faint)]/70 shadow-md hover:shadow-2xl transition-all duration-500 overflow-hidden"
+                  spotlightColor={MOSAIC_THEMES["sand-cyprus"].spotlightColor}
                 >
-                  {/* Visual Chess Strategy Matrix */}
-                  <div className="mb-6">
-                    <ChessMatrixGraphic />
-                  </div>
+                  {/* Glass Mosaic Background: Wavy water fadeout */}
+                  <GlassMosaicBackground theme="sand-cyprus" tileSize={32} gap={2.6} radius={7} />
 
-                  {/* Card Content */}
-                  <div className="pt-4 border-t border-[var(--stone-faint)]/60">
-                    <div className="font-serif text-xl font-bold text-[var(--charcoal)] mb-2 flex items-center gap-2">
-                      <span className="text-[var(--burgundy)] text-sm font-sans font-semibold tracking-wider uppercase">02.</span>
-                      <span>Advise</span>
+                  {/* Clean Header at Top - directly on card surface, matching reference */}
+                  <div className="relative z-10">
+                    <div className="flex items-center justify-between mb-3.5">
+                      <span
+                        className="px-2.5 py-0.5 rounded-full text-[9px] font-mono font-bold tracking-wider uppercase text-white shadow-xs"
+                        style={{ backgroundColor: MOSAIC_THEMES["sand-cyprus"].pillColor }}
+                      >
+                        02. ADVISE
+                      </span>
+                      <span
+                        className="text-[10px] font-mono font-bold tracking-wider uppercase flex items-center gap-1"
+                        style={{ color: MOSAIC_THEMES["sand-cyprus"].accentHex }}
+                      >
+                        STRATEGY <span>💡</span>
+                      </span>
                     </div>
-                    <p className="font-sans text-sm text-[var(--stone)] leading-relaxed">
+
+                    <h3 className="font-serif text-xl sm:text-2xl font-bold text-[var(--charcoal)] mb-2.5 leading-snug">
+                      Advise with Precision
+                    </h3>
+
+                    <p className="font-sans text-xs sm:text-[13px] text-[var(--stone)] leading-relaxed">
                       We cross-reference relevant sections of the Indian Penal Code, BNS, or
                       special statutes to formulate strategic advice in language you easily grasp.
                     </p>
                   </div>
+
+                  {/* Lower Stage: 9-Cube Light Chessboard */}
+                  <div className="relative z-10 mt-auto flex items-center justify-center min-h-[220px] sm:min-h-[235px]">
+                    <ChessMatrixGraphic />
+                  </div>
                 </SpotlightCard>
               </TiltedCard>
             </div>
 
-            {/* Card 03: Act */}
+            {/* Card 03: Act — Theme: Petal & Espresso (Espresso & Terracotta) */}
             <div className="process-card">
-              <TiltedCard maxTilt={6} scale={1.02}>
+              <TiltedCard maxTilt={5} scale={1.02}>
                 <SpotlightCard
-                  className="bg-[var(--ivory-subtle)] border border-[var(--stone-faint)] rounded-2xl p-6 md:p-8 flex flex-col justify-between h-full shadow-sm hover:shadow-md transition-shadow"
-                  spotlightColor="rgba(110, 31, 31, 0.12)"
+                  className="relative rounded-3xl p-6 sm:p-7 md:p-8 flex flex-col justify-between h-[510px] sm:h-[540px] bg-[var(--ivory-subtle)] border border-[var(--stone-faint)]/70 shadow-md hover:shadow-2xl transition-all duration-500 overflow-hidden"
+                  spotlightColor={MOSAIC_THEMES["petal-espresso"].spotlightColor}
                 >
-                  {/* Visual Compass & Gavel Dial */}
-                  <div className="mb-6">
-                    <CompassDialGraphic />
-                  </div>
+                  {/* Glass Mosaic Background: Wavy water fadeout */}
+                  <GlassMosaicBackground theme="petal-espresso" tileSize={32} gap={2.6} radius={7} />
 
-                  {/* Card Content */}
-                  <div className="pt-4 border-t border-[var(--stone-faint)]/60">
-                    <div className="font-serif text-xl font-bold text-[var(--charcoal)] mb-2 flex items-center gap-2">
-                      <span className="text-[var(--burgundy)] text-sm font-sans font-semibold tracking-wider uppercase">03.</span>
-                      <span>Act</span>
+                  {/* Clean Header at Top - directly on card surface, matching reference */}
+                  <div className="relative z-10">
+                    <div className="flex items-center justify-between mb-3.5">
+                      <span
+                        className="px-2.5 py-0.5 rounded-full text-[9px] font-mono font-bold tracking-wider uppercase text-white shadow-xs"
+                        style={{ backgroundColor: MOSAIC_THEMES["petal-espresso"].pillColor }}
+                      >
+                        03. ACT
+                      </span>
+                      <span
+                        className="text-[10px] font-mono font-bold tracking-wider uppercase flex items-center gap-1"
+                        style={{ color: MOSAIC_THEMES["petal-espresso"].accentHex }}
+                      >
+                        ACTION <span>⚖️</span>
+                      </span>
                     </div>
-                    <p className="font-sans text-sm text-[var(--stone)] leading-relaxed">
+
+                    <h3 className="font-serif text-xl sm:text-2xl font-bold text-[var(--charcoal)] mb-2.5 leading-snug">
+                      Act with Verified Counsel
+                    </h3>
+
+                    <p className="font-sans text-xs sm:text-[13px] text-[var(--stone)] leading-relaxed">
                       We generate clear action checklists, response outlines, and connect you
                       with specialized, verified legal counsel when court representation is necessary.
                     </p>
+                  </div>
+
+                  {/* Lower Stage: Compass dial graphic */}
+                  <div className="relative z-10 mt-auto flex items-center justify-center min-h-[220px] sm:min-h-[235px]">
+                    <CompassDialGraphic />
                   </div>
                 </SpotlightCard>
               </TiltedCard>
