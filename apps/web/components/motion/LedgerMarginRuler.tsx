@@ -24,7 +24,7 @@ export function LedgerMarginRuler({
 
   return (
     <div
-      className={`pointer-events-none absolute inset-0 z-0 select-none overflow-hidden hidden md:block ${className}`}
+      className={`pointer-events-none absolute inset-0 z-30 select-none overflow-hidden hidden md:block ${className}`}
       aria-hidden="true"
     >
       {/* Left ruler */}
